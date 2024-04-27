@@ -3,12 +3,13 @@ import axios from "axios";
 // import { USER_API_END_POINT } from "../utils/constant";
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "../context/auth-context"
 // import {useDispatch} from "react-redux";
 // import { getUser } from '../redux/userSlice';
 
 const Login = () => {
-
-  const [isLogin, setIsLogin] = useState(true);
+  // const [isLogin, setIsLogin] = useState(true);
+  const {isLogin, setIsLogin} = useAuth()
   // const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -33,7 +34,7 @@ const Login = () => {
           toast.success(res.data.message);
         }
       } catch (error) {
-        toast.success(error.response.data.message);
+        toast.error(error.response.data.message);
         console.log(error);
       }
     } else {
@@ -50,7 +51,7 @@ const Login = () => {
           toast.success(res.data.message);
         }
       } catch (error) {
-        toast.success(error.response.data.message);
+        toast.error(error.response.data.message);
         console.log(error);
       }
     }
